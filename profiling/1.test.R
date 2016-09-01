@@ -5,13 +5,14 @@ devtools::install_github("mhahsler/rBLAST")
 library(Biostrings)
 library(rBLAST)
 
-download.file("ftp://ftp.ncbi.nlm.nih.gov/blast/db/16SMicrobial.tar.gz", 
+download.file("ftp://ftp.ncbi.nlm.nih.gov/blast/db/16SMicrobial.tar.gz",
               destfile="examples/16SMicrobial.tar.gz", mode='wb')
 untar("examples/16SMicrobial.tar.gz", exdir="16SMicrobialDB")
 
-## load some test data 
-seq <- readRNAStringSet(system.file("examples/RNA_example.fasta", package="rBLAST"))
-
+## load some test data
+seq <- readBStringSet("example/snp.fasta")
+idx <- vmatchPattern(pattern = "[", subject = seq)
+start(idx[[1]])
 Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/Users/jyang/bin/ncbi-blast-2.4.0+/bin", sep=":"))
 ## load a BLAST database (replace db with the location + name of the BLAST DB)
 bl <- blast(db="16SMicrobialDB/16SMicrobial")
