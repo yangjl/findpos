@@ -29,28 +29,27 @@
 
 fa <- "example/snp.fasta"
 blastbin <- "/Users/yangjl/bin/ncbi-blast-2.4.0+/bin"
+db="example/16SMicrobialDB/16SMicrobial"
 findpos <- function(blastbin=NULL, db, fa, identity, coverage) {
 
   ### set environment in case
   if(!is.null(blastbin)){
     Sys.setenv(PATH = paste(Sys.getenv("PATH"), blastbin, sep=":"))
   }
+  setMethod("nchar", "ANY", base::nchar)
 
   ## load some test data
-  setMethod("nchar", "ANY", base::nchar)
-  seq <- readBStringSet("example/snp.fasta")
+  seq <- readBStringSet(fa)
   idx <- vmatchPattern(pattern = "[", subject = seq)
 
 
   start(idx)
 
   ## load a BLAST database (replace db with the location + name of the BLAST DB)
-  bl <- blast(db="16SMicrobialDB/16SMicrobial")
-  bl
-
+  bl <- blast(db)
   print(bl, info=TRUE)
 
   ## query a sequence using BLAST
-  cl <- predict(bl, seq[1,])
+  cl <- getblast(bl, seq)
 
 }
