@@ -26,3 +26,11 @@ print(bl, info=TRUE)
 
 ## query a sequence using BLAST
 cl <- predict(bl, seq[1,])
+
+
+#'
+#'
+
+fa <- "example/rna.fasta"
+blastbin <- "/Users/yangjl/bin/ncbi-blast-2.4.0+/bin"
+db="example/16SMicrobialDB/16SMicrobial"
