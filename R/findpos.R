@@ -11,6 +11,15 @@
 #'
 #' @examples
 #'
+#' library("Biostrings")
+#' library("findpos")
+#' ### Find the help document for the function
+#' ?findpos
+#' ### run
+#'  res <- findpos(blastbin = "~/bin/ncbi-blast-2.4.0+/bin",
+#'                 db="example/16SMicrobialDB/16SMicrobial",
+#'                 fa="example/rna.fasta", iden=95, len=100)
+#'
 #' @export
 findpos <- function(blastbin=NULL, db, fa, iden, len) {
 
@@ -18,7 +27,7 @@ findpos <- function(blastbin=NULL, db, fa, iden, len) {
   if(!is.null(blastbin)){
     Sys.setenv(PATH = paste(Sys.getenv("PATH"), blastbin, sep=":"))
   }
-  setMethod("nchar", "ANY", base::nchar)
+  #setMethod("nchar", "ANY", base::nchar)
 
   ## load some test data
   seq <- readBStringSet(fa)

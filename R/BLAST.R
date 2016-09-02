@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#' @export
 blast  <- function(db = NULL) {
   if(is.null(db)) stop("No BLAST database specified!")
   db <- file.path(normalizePath(dirname(db)), basename(db))
@@ -23,6 +24,7 @@ blast  <- function(db = NULL) {
   structure(list(db = db), class="BLAST")
 }
 
+#' @export
 print.BLAST <- function(x, info=TRUE, ...) {
   cat("BLAST Database\nLocation:", x$db, "\n")
 
@@ -34,6 +36,7 @@ print.BLAST <- function(x, info=TRUE, ...) {
   }
 }
 
+#' @export
 blast_help <- function() {
   system(paste(.findExecutable(c("blastn")),
                "-help"))
@@ -97,6 +100,7 @@ getblast <- function(object, seq, BLAST_args="", custom_format ="",
   cl_tab
 }
 
+#' @export
 .findExecutable <- function(exe, interactive=TRUE) {
   path <- Sys.which(exe)
   if(all(path=="")) {

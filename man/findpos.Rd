@@ -24,17 +24,15 @@ return a data.frame.
 Find the physical position of a short sequence in a given genome.
 }
 \examples{
-inputdf <- data.frame(fq1="fq_1.fq", fq2="f1_2.fq", out="mysample",
-                 group="g1", sample="s1", PL="illumina", LB="lib1", PU="unit1")
 
-run_GATK(inputdf,
-         ref.fa="~/dbcenter/Ecoli/reference/Ecoli_k12_MG1655.fasta",
-         gatkpwd="$HOME/bin/GenomeAnalysisTK-3.5/GenomeAnalysisTK.jar",
-         picardpwd="$HOME/bin/picard-tools-2.1.1/picard.jar",
-         markDup=TRUE,
-         realignInDels=FALSE, indels.vcf="indels.vcf",
-         recalBases=FALSE, dbsnp.vcf="dbsnp.vcf",
-         email=NULL, runinfo = c(FALSE, "bigmemh", 1))
+library("Biostrings")
+library("findpos")
+### Find the help document for the function
+?findpos
+### run
+ res <- findpos(blastbin = "~/bin/ncbi-blast-2.4.0+/bin",
+                db="example/16SMicrobialDB/16SMicrobial",
+                fa="example/rna.fasta", iden=95, len=100)
 
 }
 
